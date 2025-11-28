@@ -47,7 +47,10 @@ api_keys.txt
 *.csv
 *.pdf
 results/
-output/
+output_files/
+
+# Keep output module in repo
+!output/
 
 # Logs
 *.log
