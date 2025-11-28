@@ -1,0 +1,24 @@
+{
+  "timestamp": "2024-01-15T10:30:00Z",
+  "query_type": "domain",
+  "target": "example.com",
+  "results": {
+    "main_domain": "example.com",
+    "subdomains": [
+      {
+        "name": "www.example.com",
+        "ip": "93.184.216.34",
+        "ssl_valid": true,
+        "ssl_expires": "2025-03-01"
+      }
+    ],
+    "takeover_risks": [
+      {
+        "subdomain": "test.example.com",
+        "risk_level": "high",
+        "cname": "abandoned-bucket.s3.amazonaws.com",
+        "recommendation": "Remove DNS record or claim resource"
+      }
+    ]
+  }
+}

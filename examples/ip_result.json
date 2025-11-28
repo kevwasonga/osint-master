@@ -1,0 +1,13 @@
+{
+  "timestamp": "2024-01-15T10:30:00Z",
+  "query_type": "ip",
+  "target": "8.8.8.8",
+  "results": {
+    "ip": "8.8.8.8",
+    "isp": "Google LLC",
+    "city": "Mountain View",
+    "country": "United States",
+    "asn": "15169",
+    "abuse_reports": []
+  }
+}
