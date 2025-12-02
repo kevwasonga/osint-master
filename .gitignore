@@ -19,35 +19,75 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+PYTHONPATH
 
 # Virtual environments
 venv/
 env/
 ENV/
 .venv/
+.virtualenv/
+pyvenv.cfg
 
-# IDE
+# IDE and Editors
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+.sublime-project
+.sublime-workspace
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+desktop.ini
 
 # API Keys and Config
 config.ini
 .env
+.env.local
+.env.*.local
 api_keys.txt
+secrets.txt
+*.key
+*.pem
 
-# Output files
-*.txt
-*.json
-*.csv
-*.pdf
+# Output files (OSINT results)
+*_test.txt
+*_test.json
+*_scan.txt
+*_scan.json
+*_report.txt
+*_report.json
+*_analysis.txt
+*_analysis.json
+domain_*.txt
+domain_*.json
+ip_*.txt
+ip_*.json
+username_*.txt
+username_*.json
+name_*.txt
+name_*.json
+github_*.txt
+github_*.json
+result*.txt
+result*.json
+scan_*.txt
+scan_*.json
 results/
 output_files/
+reports/
+
+# Keep example output files
+!examples/*.json
+!examples/*.txt
 
 # Keep output module in repo
 !output/
@@ -55,10 +95,69 @@ output_files/
 # Logs
 *.log
 logs/
+log/
+
+# Cache
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
 
 # Project files
 prompt.txt
 milestone.txt
+DEVELOPMENT.md
 
 # Keep requirements.txt in repo
 !requirements.txt
+
+# Documentation build
+docs/_build/
+docs/build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
