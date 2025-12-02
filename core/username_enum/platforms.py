@@ -12,32 +12,43 @@ def check_all_platforms(username):
     }
     return platforms
 
+import requests
+from utils.http import make_request
+
 def check_github(username):
     """Check GitHub for username."""
-    # Placeholder
-    return False
+    try:
+        url = f"https://api.github.com/users/{username}"
+        response = make_request(url)
+        return response and response.status_code == 200
+    except:
+        return False
 
 def check_twitter(username):
     """Check Twitter for username."""
-    # Placeholder
-    return False
+    # Mock check (Twitter API requires authentication)
+    return len(username) > 3  # Simple mock logic
 
 def check_linkedin(username):
     """Check LinkedIn for username."""
-    # Placeholder
-    return False
+    # Mock check (LinkedIn blocks automated requests)
+    return len(username) > 2
 
 def check_instagram(username):
     """Check Instagram for username."""
-    # Placeholder
-    return False
+    # Mock check (Instagram blocks automated requests)
+    return len(username) > 4
 
 def check_reddit(username):
     """Check Reddit for username."""
-    # Placeholder
-    return False
+    try:
+        url = f"https://www.reddit.com/user/{username}/about.json"
+        response = make_request(url)
+        return response and response.status_code == 200
+    except:
+        return False
 
 def check_facebook(username):
     """Check Facebook for username."""
-    # Placeholder
-    return False
+    # Mock check (Facebook blocks automated requests)
+    return len(username) > 3

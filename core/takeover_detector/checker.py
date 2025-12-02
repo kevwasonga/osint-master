@@ -20,15 +20,31 @@ def check_subdomain_vulnerability(subdomain, signatures):
     
     return None
 
+import dns.resolver
+import requests
+from utils.http import make_request
+
 def get_cname_record(subdomain):
     """Get CNAME record for subdomain."""
-    # Placeholder for DNS lookup
-    return None
+    try:
+        result = dns.resolver.resolve(subdomain, 'CNAME')
+        return str(result[0]) if result else None
+    except:
+        return None
 
 def is_vulnerable_to_provider(cname, signature):
     """Check if CNAME is vulnerable to specific provider."""
     for pattern in signature["cname_patterns"]:
         if pattern in cname:
-            # Additional checks would go here
-            return True
+            # Check if the target responds with error messages
+            try:
+                response = make_request(f"http://{cname}")
+                if response:
+                    content = response.text
+                    for error_msg in signature["error_messages"]:
+                        if error_msg.lower() in content.lower():
+                            return True
+            except:
+                pass
+            return True  # CNAME points to provider but may be unclaimed
     return False

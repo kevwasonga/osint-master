@@ -16,27 +16,45 @@ def resolve_dns_records(domain, subdomains):
     
     return dns_data
 
+import dns.resolver
+import socket
+
 def resolve_a_record(domain):
     """Resolve A record."""
-    # Placeholder
-    return []
+    try:
+        result = dns.resolver.resolve(domain, 'A')
+        return [str(rdata) for rdata in result]
+    except:
+        return []
 
 def resolve_aaaa_record(domain):
     """Resolve AAAA record."""
-    # Placeholder
-    return []
+    try:
+        result = dns.resolver.resolve(domain, 'AAAA')
+        return [str(rdata) for rdata in result]
+    except:
+        return []
 
 def resolve_cname_record(domain):
     """Resolve CNAME record."""
-    # Placeholder
-    return None
+    try:
+        result = dns.resolver.resolve(domain, 'CNAME')
+        return str(result[0]) if result else None
+    except:
+        return None
 
 def resolve_txt_record(domain):
     """Resolve TXT record."""
-    # Placeholder
-    return []
+    try:
+        result = dns.resolver.resolve(domain, 'TXT')
+        return [str(rdata) for rdata in result]
+    except:
+        return []
 
 def resolve_mx_record(domain):
     """Resolve MX record."""
-    # Placeholder
-    return []
+    try:
+        result = dns.resolver.resolve(domain, 'MX')
+        return [str(rdata) for rdata in result]
+    except:
+        return []
