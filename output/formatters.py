@@ -37,6 +37,16 @@ def format_name_data(data):
         output += f"Phone Number: {data['phone']}\n"
     if data.get('address'):
         output += f"Address: {data['address']}\n"
+    if data.get('email'):
+        output += f"Email: {data['email']}\n"
+    
+    social_media = data.get('social_media', {})
+    if social_media:
+        output += "Social Media:\n"
+        for platform, url in social_media.items():
+            if url:
+                output += f"  {platform.title()}: {url}\n"
+    
     return output
 
 def format_ip_data(data):
@@ -45,6 +55,20 @@ def format_ip_data(data):
     output += f"ISP: {data.get('isp', 'N/A')}\n"
     output += f"City: {data.get('city', 'N/A')}\n"
     output += f"Country: {data.get('country', 'N/A')}\n"
+    if data.get('asn'):
+        output += f"ASN: {data['asn']}\n"
+    
+    if data.get('blacklisted'):
+        output += "Status: BLACKLISTED\n"
+    else:
+        output += "Status: Clean\n"
+    
+    abuse_reports = data.get('abuse_reports', [])
+    if abuse_reports:
+        output += "Abuse Reports:\n"
+        for report in abuse_reports:
+            output += f"  - {report}\n"
+    
     return output
 
 def format_username_data(data):
@@ -58,9 +82,28 @@ def format_username_data(data):
 
 def format_domain_data(data):
     """Format domain enumeration data."""
-    output = f"Domain: {data.get('domain', 'N/A')}\n"
+    output = f"Main Domain: {data.get('domain', 'N/A')}\n\n"
+    
+    # WHOIS information
+    whois_data = data.get('whois', {})
+    if whois_data.get('registrar'):
+        output += f"Registrar: {whois_data['registrar']}\n"
+    
+    # Subdomains
     subdomains = data.get('subdomains', [])
     output += f"Subdomains found: {len(subdomains)}\n"
     for subdomain in subdomains:
         output += f"  - {subdomain}\n"
+    
+    # Takeover risks
+    takeover_risks = data.get('takeover_risks', {})
+    risks = takeover_risks.get('risks', [])
+    if risks:
+        output += "\nPotential Subdomain Takeover Risks:\n"
+        for risk in risks:
+            output += f"  - Subdomain: {risk['subdomain']}\n"
+            output += f"    CNAME: {risk['cname']}\n"
+            output += f"    Risk Level: {risk['risk_level']}\n"
+            output += f"    Recommendation: {risk['recommendation']}\n\n"
+    
     return output
