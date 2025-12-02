@@ -75,9 +75,16 @@ def format_username_data(data):
     """Format username enumeration data."""
     output = f"Username: {data.get('username', 'N/A')}\n"
     output += "Platform Results:\n"
-    for platform, found in data.get('platforms', {}).items():
-        status = "Found" if found else "Not Found"
-        output += f"  {platform.title()}: {status}\n"
+    for platform, result in data.get('platforms', {}).items():
+        if result and isinstance(result, str) and result.startswith('http'):
+            # Found with URL
+            output += f"  {platform.title()}: Found - {result}\n"
+        elif result:
+            # Found but no URL (fallback)
+            output += f"  {platform.title()}: Found\n"
+        else:
+            # Not found
+            output += f"  {platform.title()}: Not Found\n"
     return output
 
 def format_domain_data(data):
